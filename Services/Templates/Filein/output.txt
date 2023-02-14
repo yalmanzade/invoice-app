@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html style="font-family:Verdana, Geneva, Tahoma, sans-serif;" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template</title>
+</head>
+<body>
+    <header style="border: 1px solid red;">
+        <section>
+            <div style="display: inline-grid; grid-template-columns: auto auto; justify-content: space-evenly;">
+                <div style ="border: 1px solid green;">
+                    <h1 style="font-size: 20px;">INVOICE</h1>
+                    <p>
+                        Date Generated: 2/11/2023 12:22:30 PM
+                    </p>
+                    <p>
+                        Due Date: 2/11/2023 12:22:10 PM
+                    </p>
+                </div>
+                <div style ="border: 1px solid green;">
+                    <div>
+                        <p>Name: Amazing Cookies</p>
+                    </div>
+                    <div>
+                        <p>Phone: (555) 555-5555</p>
+                    </div>
+                    <div>
+                        <p>Address: 123 Cookie Dr, Evansville IN</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div style="display: inline-grid; grid-template-columns: auto auto; justify-content: space-evenly;">
+                <div style ="border: 1px solid green;">
+                    <h6 style="font-size: 18px; margin: 1px; padding: 10px;">Bill to</h1>
+                </div>
+                <div style ="border: 1px solid green;">
+                    <div>
+                        <p>Name: Real Madrid Inc.</p>
+                    </div>
+                    <div>
+                        <p>Phone: (289) 685-9816</p>
+                    </div>
+                    <div>
+                        <p>Address: 839 Pruis Lane</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+    <main>
+        <section><table style="margin-top:10px; border: 1px solid black; width: 100%;">
+    <thead style="text-align: left;">
+        <th style="text-align: left;">Item Name</th>
+        <th style="text-align: left;">Qty</th>
+        <th style="text-align: left;">Rate</th>
+        <th style="text-align: left;">Total</th>
+    </thead>
+    <tbody style="text-align: left;"><tr> 
+                           <td>Cookie Box</td>
+                           <td>1</td>
+                           <td>10.00</td>
+                           <td>10.00</td>
+                       </tr><tr>
+                <td></td>
+                <td></td>
+                <td>Subtotal</td>
+                <td>$10.00</td>
+            </tr><tr>
+                <td></td>
+                <td></td>
+                <td>Fees</td>
+                <td>$1.70</td>
+            </tr><tr>
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td>$12.40</td>
+            </tr></tbody></table></section>
+    </main>
+<section>
+    <h1>Notes</h1>
+    <p></p>
+</section>
+<section>
+    <h1>Terms and Conditions</h1>
+    <p>Lorem, ipsum.</p>
+</section>
+<footer style="border: 1px solid red;">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam!</p>
+</footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

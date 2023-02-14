@@ -1,0 +1,42 @@
+﻿@model Company
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Company</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Attribute</th>
+                <th scope="col">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Name</td>
+                <td>@Model.Name</td>
+            </tr>
+             <tr>
+                <th scope="row">2</th>
+                <td>Phone</td>
+                <td>@Model.FormatedPhone</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Address</td>
+                <td>@Model.Address</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

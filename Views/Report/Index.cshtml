@@ -1,0 +1,112 @@
+﻿@model invoice.Models.SalesReport
+@{
+    ViewData["Title"] = "Reports";
+}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header">About this Report</div>
+                    <div class="card-body">
+                        <p class="card-text">This report was generated on @Model.CreatedDate.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col auto">
+                <div class="card text-dark bg-light mb-3" style="max-width: 50rem;">
+                    <div class="card-header">Top Clients</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Top 3 Clients</h5>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"> 
+                                        Rank
+                                    </th>
+                                    <th scope="col"> 
+                                        Company
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int rank = 0;
+                                    foreach (var item in Model.Companies)
+                                    {
+                                        rank++;
+                                        <tr>
+                                            <td>@rank</td>
+                                            <td>@item.Name</td>
+                                        </tr>
+                                    }
+                                 }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Last Invoice</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                Due Date:
+                            </div>
+                            <div class="col">
+                                @Model.LastInvoice.DueDate
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                Issue Date:
+                            </div>
+                            <div class="col">
+                                @Model.LastInvoice.IssuedDate
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                Customer:
+                            </div>
+                            <div class="col">
+                                @Model.LastInvoice.Customer.Name
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Best Client</div>
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.BestCompany.Name</h5>
+                        <p class="card-text">is your best client.</p>
+                    </div>
+                </div>            
+            </div>
+            <div class="col">
+                <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Invoice History</div>
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.InvoicesGenerated</h5>
+                        <p class="card-text">invoices have been generated.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Sales Report</div>
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.BestSellingItem</h5>
+                        <p class="card-text">is your best-seller.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

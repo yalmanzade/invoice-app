@@ -1,0 +1,81 @@
+﻿@model invoice.Models.Invoice
+
+@{
+    ViewData["Title"] = "Create";
+    var itemList = ViewBag.itemList;
+    var feeList = ViewBag.Fees;
+}
+
+<h1>Create</h1>
+
+<h4>Invoice</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="form-data" asp-action="Create">
+            <input type="hidden" name="fees" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <select name="CustomerId" id="CustomerId">
+                @{
+                    var companyList = ViewBag.CompanyList;
+                    foreach (var company in companyList)
+                    {
+                        <option value="@company.Id">@company.Name</option>
+                    }
+                }
+                </select>
+                @*<input asp-for="CustomerId" class="form-control" />*@
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+            <div id="product-target" class="form-group">
+                <div id="product-template">
+                    <select name="itemList[]" id="itemList" >
+                        @{
+                            foreach (var item in itemList)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
+                    </select>
+                    <label for="quantity">Quantity</label>
+                    <input value="0" type="number" id="quantity0" name="quantity[]"
+                           min="1" max="100000">
+               </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="DueDate" class="control-label"></label>
+                <input asp-for="DueDate" class="form-control" value="2023-02-20" />
+                <span asp-validation-for="DueDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @{
+                    foreach(var fee in feeList)
+                    {
+                        <input type="checkbox" name="fees" value="@fee.Id" id="@fee.Id" checked />
+                        <label for="fees">
+                        @fee.Name
+                        </label>
+                    }
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+        <div>
+            <button onclick="AddRow()">Add Row +</button>
+        </div>
+        <div>
+            <button onclick="CreateInvoice()">Create</button>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
