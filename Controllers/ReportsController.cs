@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace invoice.Controllers
 {
-    public class ReportController : Controller
+    public class ReportsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public ReportController(ApplicationDbContext context)
+        public ReportsController(ApplicationDbContext context)
         {
             _context = context;
         }

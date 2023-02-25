@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace invoice.Models;
@@ -7,13 +8,17 @@ namespace invoice.Models;
 public class Invoice
 {
     [Key]
+    [DisplayName("Id")]
     public ulong InvoiceId { get; set; }
+    [DisplayName("Customer")]
     [ForeignKey("CustomerId")]
     public ulong CustomerId { get; set; }
+    [DisplayName("Customer Id")]
     [ForeignKey("UserId")]
     public ulong UserId { get; set; }
     public List<ItemSold>? Items = new();
     public List<Fee>? Fees = new();
+    [DisplayName("Due Date")]
     [Required]
     [DataType(DataType.Date)]
     public DateTime DueDate { get; set; }
@@ -22,6 +27,9 @@ public class Invoice
     public DateTime? IssuedDate { get; set; } = DateTime.Now;
     public string? ItemsJson { get; set; }
     public string? FeesJson { get; set; }
+    [Required]
+    [DisplayName("Invoice Status")]
+    public bool IsPaid { get; set; } = false;
     [NotMapped]
     [Precision(18, 2)]
     public decimal? Total = 0.0M;

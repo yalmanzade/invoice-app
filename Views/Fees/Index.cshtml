@@ -1,37 +1,44 @@
 ﻿@model IEnumerable<Fee>
 
 @{
-    ViewData["Title"] = "View Fees";
+    ViewData["Title"] = "Fee Management";
 }
+<section class="container">
+    <section class="container">
+        <h1>Create and manage your fees.</h1>
+        <p>
+            <a class="btn btn-primary" asp-action="Create">New Fee</a>
+        </p>
+        <p class="fs-4">There are @Model.Count() fees</p>
+    </section>
+    <section class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Amount</td>
+                        <td>
+                            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+@*                            <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-<h1>Index</h1>
+    </section>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<p>There are @Model.Count() Elements</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.Amount</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+</section>
+

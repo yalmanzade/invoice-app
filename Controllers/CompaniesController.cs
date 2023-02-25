@@ -65,8 +65,9 @@ namespace invoice.Controllers
         }
 
         // GET: Companies/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(ulong? id)
         {
+
             if (id == null || _context.Companies == null)
             {
                 return NotFound();

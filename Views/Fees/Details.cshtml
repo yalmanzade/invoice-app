@@ -1,0 +1,26 @@
+﻿@model Fee
+@{
+    ViewData["Title"] = "Fee Details";
+}
+<section class="container">
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="auto">Id</th>
+                    <th scope="auto">Name</th>
+                    <th scope="auto">Amount</th>
+                    <th scope="auto">Is Flat Fee</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="auto">@Model.Id</th>
+                    <td>@Model.Name</td>
+                    <td>@Model.Amount</td>
+                    <td>@Model.IsFlat</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using invoice.Data;
 
 #nullable disable
 
-namespace invoice.Migrations
+namespace invoice.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class invoiceContextModelSnapshot : ModelSnapshot
+    [Migration("20230225184309_IsPaidInvoice")]
+    partial class IsPaidInvoice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,9 +90,6 @@ namespace invoice.Migrations
                     b.Property<string>("FeesJson")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsPaid")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("IssuedDate")
                         .IsRequired()
                         .HasColumnType("datetime2");
@@ -99,6 +99,9 @@ namespace invoice.Migrations
 
                     b.Property<decimal>("UserId")
                         .HasColumnType("decimal(20,0)");
+
+                    b.Property<bool>("isPaid")
+                        .HasColumnType("bit");
 
                     b.HasKey("InvoiceId");
 

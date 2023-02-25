@@ -1,8 +1,61 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home ";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="container">
+    <div class="text-center">
+        <h1>Welcome Back, User.</h1>
+        <p class="fs-4">Let's get your business going.</p>
+    </div>
+</section>
+<section class="container mt-4">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Invoices</h5>
+                    <p class="card-text">Create, edit, and modify invoices.</p>
+                    <a asp-controller="Invoices" asp-action="Index" class="btn btn-primary">
+                        <i class="fa-regular fa-file-lines"></i>
+                        Invoices</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Companies</h5>
+                    <p class="card-text">Manage your clients and information.</p>
+                    <a asp-controller="Companies" asp-action="Index" class="btn btn-primary">
+                        <i class="fa-regular fa-building"></i>
+                        Companies</a>
+                </div>
+            </div>
+        </div>      
+    </div>
+</section>
+<section class="container mt-4">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Fees</h5>
+                    <p class="card-text">Create, edit, and modify fees.</p>
+                    <a asp-controller="Fees" asp-action="Index" class="btn btn-primary">
+                        <i class="fa-regular fa-credit-card"></i>
+                        Fees</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Companies</h5>
+                    <p class="card-text">Manage your clients and information.</p>
+                    <a asp-controller="Reports" asp-action="Index" class="btn btn-primary">
+                        <i class="fa-regular fa-folder"></i>
+                        Reports</a>
+                </div>
+            </div>
+        </div>      
+    </div>
+</section>

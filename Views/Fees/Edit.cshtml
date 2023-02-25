@@ -1,43 +1,48 @@
 ﻿@model invoice.Models.Fee
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Fee";
 }
-
-<h1>Edit</h1>
-
-<h4>Fee</h4>
-<hr />
-<div class="row">
+<section class="container">
+<div class="container">
+    <h1>Edit</h1>
+    
+    <h4>Fee</h4>
+    <hr />
+</div>
+<div class="container">
+    <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
+            <div class="form-group mt-1">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-1">
                 <label asp-for="Amount" class="control-label"></label>
                 <input asp-for="Amount" class="form-control" />
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-1">
                 <label asp-for="IsFlat" class="control-label"></label>
                 <input asp-for="IsFlat" class="form-control" />
                 <span asp-validation-for="IsFlat" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-1">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
+
+<div class="container mt-4">
+    <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+</div>
+</section>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

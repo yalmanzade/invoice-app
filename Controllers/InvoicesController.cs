@@ -41,6 +41,35 @@ namespace invoice.Controllers
 
             return View(invoice);
         }
+        // GET: Invoices/ChangePaymentStatus/5
+        public async Task<IActionResult> ChangePaymentStatus(ulong? id)
+        {
+            if (id == null || _context.Invoices == null)
+            {
+                return NotFound();
+            }
+
+            var invoice = await _context.Invoices
+                .FirstOrDefaultAsync(m => m.InvoiceId == id);
+            if (invoice == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                if (invoice.IsPaid)
+                {
+                    invoice.IsPaid = false;
+                }
+                else
+                {
+                    invoice.IsPaid = true;
+                }
+                _context.Update(invoice);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Index");
+        }
 
         // GET: Invoices/Create
         public async Task<IActionResult> Create()
