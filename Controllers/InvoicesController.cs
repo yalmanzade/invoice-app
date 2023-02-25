@@ -38,7 +38,7 @@ namespace invoice.Controllers
             {
                 return NotFound();
             }
-
+            await LoadCompanies();
             return View(invoice);
         }
         // GET: Invoices/ChangePaymentStatus/5
@@ -158,6 +158,7 @@ namespace invoice.Controllers
             {
                 return NotFound();
             }
+            await LoadCompanies();
             return View(invoice);
         }
 
@@ -166,7 +167,7 @@ namespace invoice.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ulong id, [Bind("InvoiceId,CustomerId,UserId,DueDate")] Invoice invoice)
+        public async Task<IActionResult> Edit(ulong id, [Bind("InvoiceId,DueDate")] Invoice invoice)
         {
             if (id != invoice.InvoiceId)
             {
@@ -177,6 +178,9 @@ namespace invoice.Controllers
             {
                 try
                 {
+                    var newDueDate = invoice.DueDate;
+                    invoice = await _context.Invoices.FindAsync(id);
+                    invoice.DueDate = newDueDate;
                     _context.Update(invoice);
                     await _context.SaveChangesAsync();
                 }
@@ -193,13 +197,14 @@ namespace invoice.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(invoice);
+            await LoadCompanies();
+            return RedirectToAction("Index");
         }
 
         // POST: Invoices/Download/5
         [HttpPost, ActionName("Download")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DownloadConfirmed(ulong? id)
+        public async Task<IActionResult> DownloadConfirmed(ulong? id, string? terms, string? notes)
         {
             if (id == null || _context.Invoices == null)
             {
@@ -225,6 +230,8 @@ namespace invoice.Controllers
             InvoiceService invoiceService = new(invoice);
             await invoice.ParseItemList();
             await invoice.ParseFeeList();
+            invoiceService.Notes = notes;
+            invoiceService.TermsAndCond = terms;
             invoiceService.GenerateInvoice();
             byte[] filebytes = System.IO.File.ReadAllBytes(invoiceService.GetFilePath(invoice.InvoiceId));
             string contentType = "application/pdf";

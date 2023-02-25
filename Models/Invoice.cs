@@ -23,6 +23,7 @@ public class Invoice
     [DataType(DataType.Date)]
     public DateTime DueDate { get; set; }
     [Required]
+    [DisplayName("Issued Date")]
     [DataType(DataType.Date)]
     public DateTime? IssuedDate { get; set; } = DateTime.Now;
     public string? ItemsJson { get; set; }

@@ -4,55 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Template</title>
+    <title>Invoice</title>
 </head>
 <body>
-    <header style="border: 1px solid red;">
+    <header>
         <section>
             <div style="display: inline-grid; grid-template-columns: auto auto; justify-content: space-evenly;">
-                <div style ="border: 1px solid green;">
-                    <h1 style="font-size: 20px;">INVOICE</h1>
+                <div>
+                    <h1 style="font-size: 20px;">Invoice</h1>
                     <p>
-                        Date Generated: 2/11/2023 12:22:30 PM
+                        Date Generated: 2/25/2023 5:42:10 PM
                     </p>
                     <p>
-                        Due Date: 2/11/2023 12:22:10 PM
+                        Due Date: 2/25/2023 12:00:00 AM
                     </p>
                 </div>
-                <div style ="border: 1px solid green;">
+                <div style ="padding-top: 10px;">
                     <div>
-                        <p>Name: Amazing Cookies</p>
+                        <!-- Name -->
+                        <p>Amazing Cookies</p>
                     </div>
                     <div>
-                        <p>Phone: (555) 555-5555</p>
+                        <!-- Phone -->
+                        <p>(555) 555-5555</p>
                     </div>
                     <div>
-                        <p>Address: 123 Cookie Dr, Evansville IN</p>
+                        <!-- Address -->
+                        <p>123 Cookie Dr, Evansville IN</p>
                     </div>
                 </div>
             </div>
         </section>
-        <section>
+        <section style ="padding-top: 10px;">
             <div style="display: inline-grid; grid-template-columns: auto auto; justify-content: space-evenly;">
-                <div style ="border: 1px solid green;">
-                    <h6 style="font-size: 18px; margin: 1px; padding: 10px;">Bill to</h1>
+                <div>
+                    <h1 style="font-size: 18px;">Bill to</h1>
                 </div>
-                <div style ="border: 1px solid green;">
+                <div>
                     <div>
-                        <p>Name: Real Madrid Inc.</p>
+                        <!-- Name -->
+                        <p>Yosep Almanza</p>
                     </div>
                     <div>
-                        <p>Phone: (289) 685-9816</p>
+                        <!-- Phone -->
+                        <p>(812) 604-3297</p>
                     </div>
                     <div>
-                        <p>Address: 839 Pruis Lane</p>
+                        <!-- Address -->
+                        <p>120 S Villa Dr</p>
                     </div>
                 </div>
             </div>
         </section>
     </header>
     <main>
-        <section><table style="margin-top:10px; border: 1px solid black; width: 100%;">
+        <div style ="padding-top: 10px;">
+            <h1 style="font-size:18px;">Items</h1>
+        </div>
+        <section style="margin-top: 10px;"><table style="margin-top:10px; border: 1px solid black; width: 100%;">
     <thead style="text-align: left;">
         <th style="text-align: left;">Item Name</th>
         <th style="text-align: left;">Qty</th>
@@ -61,37 +70,52 @@
     </thead>
     <tbody style="text-align: left;"><tr> 
                            <td>Cookie Box</td>
-                           <td>1</td>
+                           <td>2</td>
                            <td>10.00</td>
-                           <td>10.00</td>
+                           <td>20.00</td>
                        </tr><tr>
                 <td></td>
                 <td></td>
                 <td>Subtotal</td>
-                <td>$10.00</td>
+                <td>$20.00</td>
+            </tr><tr>
+                <td></td>
+                <td></td>
+                <td>Taxes</td>
+                <td>$1.40</td>
             </tr><tr>
                 <td></td>
                 <td></td>
                 <td>Fees</td>
-                <td>$1.70</td>
+                <td>$2.40</td>
             </tr><tr>
                 <td></td>
                 <td></td>
                 <td>Total</td>
-                <td>$12.40</td>
+                <td>$23.80</td>
             </tr></tbody></table></section>
     </main>
-<section>
-    <h1>Notes</h1>
-    <p></p>
+<section
+  style="
+    margin-top: 20px;
+    font-size: 18px;
+    border-bottom: 1px;
+    border-color: black;
+  "
+>
+  <h1 style="font-size: 18px">Notes</h1>
+  <p style="font-size: 16px">Invoice</p>
 </section>
-<section>
-    <h1>Terms and Conditions</h1>
-    <p>Lorem, ipsum.</p>
+<section style="padding-top: 10px;">
+  <h1 style="font-size: 18px;">Terms and Conditions</h1>
+  <p style="font-size: 16px; margin-top: 2%;">Terms</p>
 </section>
-<footer style="border: 1px solid red;">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam!</p>
+<footer>
+    <div style="padding-top: 10px;">
+        <p style="font-size: 16px">Thank for your business.</p>
+    </div>
 </footer>
+
 </body>
 </html>
 

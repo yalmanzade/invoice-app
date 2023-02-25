@@ -5,18 +5,19 @@ namespace invoice.Services;
 
 public class InvoiceService
 {
-    private string notes = "";
-    private string outPath = "Services/Fileout/";
-    private string htmlTemplate = "Services/Templates/template.html";
-    private string htmlOutput = "Services/Templates/Filein/output.txt";
-    private string htmlTable = "Services/Templates/tabletop.html";
-    private string htmlFooter = "Services/Templates/footer.html";
-    private Invoice invoice;
+    public string Notes = string.Empty;
+    public string TermsAndCond = string.Empty;
+    private string OutPath = "Services/Fileout/";
+    private string HtmlTemplate = "Services/Templates/template.html";
+    private string HtmlOutput = "Services/Templates/Filein/output.txt";
+    private string HtmlTable = "Services/Templates/tabletop.html";
+    private string HtmlFooter = "Services/Templates/footer.html";
+    private Invoice Invoice;
 
     public InvoiceService(Invoice invoice)
     {
-        this.invoice = invoice;
-        this.invoice.DueDate = invoice.DueDate;
+        this.Invoice = invoice;
+        this.Invoice.DueDate = invoice.DueDate;
     }
 
     public bool GenerateInvoice()
@@ -24,8 +25,8 @@ public class InvoiceService
         try
         {
             ReadyHTMLfile();
-            string filename = outPath + invoice.InvoiceId + ".pdf";
-            FileStream template = new(htmlOutput, FileMode.Open, FileAccess.Read, FileShare.Read);
+            string filename = OutPath + Invoice.InvoiceId + ".pdf";
+            FileStream template = new(HtmlOutput, FileMode.Open, FileAccess.Read, FileShare.Read);
             FileStream outFile = new(filename, FileMode.Create);
             HtmlConverter.ConvertToPdf(template, outFile);
             Console.WriteLine("Invoice Generated");
@@ -45,14 +46,14 @@ public class InvoiceService
         string table = "";
         try
         {
-            StreamReader reader = new(htmlTable);
+            StreamReader reader = new(HtmlTable);
             using (reader)
             {
                 table = reader.ReadToEnd();
             }
-            foreach (var item in invoice.Items)
+            foreach (var item in Invoice.Items)
             {
-                invoice.Subtotal += item.Amount * item.Quantity;
+                Invoice.Subtotal += item.Amount * item.Quantity;
                 table += @"<tr> 
                            <td>" + item.Name + @"</td>
                            <td>" + item.Quantity + @"</td>
@@ -64,19 +65,25 @@ public class InvoiceService
                 <td></td>
                 <td></td>
                 <td>Subtotal</td>
-                <td>" + invoice.FormatedSubtotal + @"</td>
+                <td>" + Invoice.FormatedSubtotal + @"</td>
+            </tr>";
+            table += @"<tr>
+                <td></td>
+                <td></td>
+                <td>Taxes</td>
+                <td>" + Invoice.FormatedTax + @"</td>
             </tr>";
             table += @"<tr>
                 <td></td>
                 <td></td>
                 <td>Fees</td>
-                <td>" + invoice.FormatedFee + @"</td>
+                <td>" + Invoice.FormatedFee + @"</td>
             </tr>";
             table += @"<tr>
                 <td></td>
                 <td></td>
                 <td>Total</td>
-                <td>" + invoice.FormatedTotal + @"</td>
+                <td>" + Invoice.FormatedTotal + @"</td>
             </tr>";
             table += @"</tbody></table>";
             return table;
@@ -104,23 +111,23 @@ public class InvoiceService
         {
             string table = ReadyHTMLTable();
             string inFile = "";
-            StreamReader reader = new(htmlTemplate);
+            StreamReader reader = new(HtmlTemplate);
             using (reader)
             {
                 inFile = reader.ReadToEnd();
             }
-            reader = new(htmlFooter);
+            reader = new(HtmlFooter);
             string footer;
             using (reader)
             {
                 footer = reader.ReadToEnd();
-                footer = string.Format(footer, this.notes);
+                footer = string.Format(footer, this.Notes, this.TermsAndCond);
             }
-            StreamWriter writer = new(htmlOutput, false);
+            StreamWriter writer = new(HtmlOutput, false);
             using (writer)
             {
-                writer.WriteLine(inFile, DateTime.Now, invoice.DueDate, invoice.Issuer.Name, invoice.Issuer.FormatedPhone, invoice.Issuer.Address,
-                               invoice.Customer.Name, invoice.Customer.FormatedPhone, invoice.Customer.Address, table, footer);
+                writer.WriteLine(inFile, DateTime.Now, Invoice.DueDate, Invoice.Issuer.Name, Invoice.Issuer.FormatedPhone, Invoice.Issuer.Address,
+                               Invoice.Customer.Name, Invoice.Customer.FormatedPhone, Invoice.Customer.Address, table, footer);
             }
             return true;
         }
@@ -140,6 +147,6 @@ public class InvoiceService
     public string GetFilePath(ulong Id)
     {
         string fileName = Id.ToString() + ".pdf";
-        return outPath + fileName;
+        return OutPath + fileName;
     }
 }
