@@ -13,10 +13,10 @@
                 <div>
                     <h1 style="font-size: 20px;">Invoice</h1>
                     <p>
-                        Date Generated: 2/25/2023 5:42:10 PM
+                        Date Generated: 3/30/2023 12:31:01 AM
                     </p>
                     <p>
-                        Due Date: 2/25/2023 12:00:00 AM
+                        Due Date: 2/20/2023 12:00:00 AM
                     </p>
                 </div>
                 <div style ="padding-top: 10px;">
@@ -43,15 +43,15 @@
                 <div>
                     <div>
                         <!-- Name -->
-                        <p>Yosep Almanza</p>
+                        <p>University of Southern Indiana</p>
                     </div>
                     <div>
                         <!-- Phone -->
-                        <p>(812) 604-3297</p>
+                        <p>(666) 666-6666</p>
                     </div>
                     <div>
                         <!-- Address -->
-                        <p>120 S Villa Dr</p>
+                        <p>120 University Dr, Evansville, IN.</p>
                     </div>
                 </div>
             </div>
@@ -70,29 +70,44 @@
     </thead>
     <tbody style="text-align: left;"><tr> 
                            <td>Cookie Box</td>
-                           <td>2</td>
+                           <td>1</td>
                            <td>10.00</td>
+                           <td>10.00</td>
+                       </tr><tr> 
+                           <td>Wedding Cake</td>
+                           <td>2</td>
+                           <td>100.00</td>
+                           <td>200.00</td>
+                       </tr><tr> 
+                           <td>Assorted Muffins</td>
+                           <td>3</td>
                            <td>20.00</td>
+                           <td>60.00</td>
+                       </tr><tr> 
+                           <td>Single Cookie</td>
+                           <td>4</td>
+                           <td>1.00</td>
+                           <td>4.00</td>
                        </tr><tr>
                 <td></td>
                 <td></td>
                 <td>Subtotal</td>
-                <td>$20.00</td>
+                <td>$274.00</td>
             </tr><tr>
                 <td></td>
                 <td></td>
                 <td>Taxes</td>
-                <td>$1.40</td>
+                <td>$19.18</td>
             </tr><tr>
                 <td></td>
                 <td></td>
                 <td>Fees</td>
-                <td>$2.40</td>
+                <td>$293.18</td>
             </tr><tr>
                 <td></td>
                 <td></td>
                 <td>Total</td>
-                <td>$23.80</td>
+                <td>$586.36</td>
             </tr></tbody></table></section>
     </main>
 <section
@@ -104,11 +119,11 @@
   "
 >
   <h1 style="font-size: 18px">Notes</h1>
-  <p style="font-size: 16px">Invoice</p>
+  <p style="font-size: 16px"></p>
 </section>
 <section style="padding-top: 10px;">
   <h1 style="font-size: 18px;">Terms and Conditions</h1>
-  <p style="font-size: 16px; margin-top: 2%;">Terms</p>
+  <p style="font-size: 16px; margin-top: 2%;"></p>
 </section>
 <footer>
     <div style="padding-top: 10px;">

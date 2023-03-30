@@ -10,48 +10,69 @@ public class Invoice
     [Key]
     [DisplayName("Id")]
     public ulong InvoiceId { get; set; }
+
     [DisplayName("Customer")]
     [ForeignKey("CustomerId")]
     public ulong CustomerId { get; set; }
-    [DisplayName("Customer Id")]
+
+    [Required]
+    [DisplayName("Customer")]
+    [DataType(DataType.Text)]
+    public string CustomerName { get; set; } = string.Empty;
+
     [ForeignKey("UserId")]
     public ulong UserId { get; set; }
+
     public List<ItemSold>? Items = new();
+
     public List<Fee>? Fees = new();
+
     [DisplayName("Due Date")]
     [Required]
     [DataType(DataType.Date)]
     public DateTime DueDate { get; set; }
+
     [Required]
     [DisplayName("Issued Date")]
     [DataType(DataType.Date)]
     public DateTime? IssuedDate { get; set; } = DateTime.Now;
+
     public string? ItemsJson { get; set; }
+
     public string? FeesJson { get; set; }
     [Required]
     [DisplayName("Invoice Status")]
     public bool IsPaid { get; set; } = false;
+
     [NotMapped]
     [Precision(18, 2)]
     public decimal? Total = 0.0M;
+
     [NotMapped]
     [Precision(18, 2)]
     public decimal? Subtotal = 0.0M;
+
     [NotMapped]
     [Precision(18, 2)]
     public decimal? Tax = 0.07M;
+
     [NotMapped]
     [Precision(18, 2)]
     public decimal? Shipping = 0.0M;
+
     [NotMapped]
     [Precision(18, 2)]
     public decimal? TotalFees = 0.0M;
+
     [NotMapped]
     public bool HasFee { get; set; }
+
     [NotMapped]
     public Company? Issuer { get; set; }
+
     [NotMapped]
     public Company? Customer { get; set; }
+
     [NotMapped]
     public string? FormatedFee
     {
@@ -61,7 +82,7 @@ public class Invoice
             {
                 foreach (var item in this.Fees)
                 {
-                    if (item.IsFlat == 1) TotalFees += item.Amount;
+                    if (item.IsFlatFee) TotalFees += item.Amount;
                     else
                     {
                         TotalFees += item.Amount * Subtotal;

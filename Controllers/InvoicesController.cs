@@ -32,13 +32,15 @@ namespace invoice.Controllers
                 return NotFound();
             }
 
-            var invoice = await _context.Invoices
+            Invoice? invoice = await _context.Invoices
                 .FirstOrDefaultAsync(m => m.InvoiceId == id);
+
             if (invoice == null)
             {
                 return NotFound();
             }
             await LoadCompanies();
+            await invoice.ParseItemList();
             return View(invoice);
         }
         // GET: Invoices/ChangePaymentStatus/5
@@ -115,6 +117,7 @@ namespace invoice.Controllers
                 };
                 invoice.Issuer = company;
                 invoice.CustomerId = customerId;
+                invoice.CustomerName = _context.Companies.FindAsync(customerId).Result.Name;
                 if (fees.Length > 1)
                 {
                     for (int i = 1; i < fees.Length; i++)
@@ -204,7 +207,8 @@ namespace invoice.Controllers
         // POST: Invoices/Download/5
         [HttpPost, ActionName("Download")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DownloadConfirmed(ulong? id, string? terms, string? notes)
+        //[ActionName("DownloadConfirmed")]
+        public async Task<IActionResult> Download(ulong? id, string? terms, string? notes)
         {
             if (id == null || _context.Invoices == null)
             {
@@ -236,7 +240,6 @@ namespace invoice.Controllers
             byte[] filebytes = System.IO.File.ReadAllBytes(invoiceService.GetFilePath(invoice.InvoiceId));
             string contentType = "application/pdf";
             return File(filebytes, contentType);
-            //return View(invoice);
         }
         // GET: Invoices/Download/5
         public async Task<IActionResult> Download(ulong? id)

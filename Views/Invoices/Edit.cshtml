@@ -16,7 +16,7 @@
         <div class="col-md-4">
             <div class="form-group mt-1">
                 <label asp-for="CustomerId" class="control-label"></label>
-                <input disabled type="text" asp-for="CustomerId" class="form-control" value="@companyList.Find(company => company.Id == Model.CustomerId).Name" />
+                <input disabled type="text" asp-for="CustomerId" class="form-control" value="@Model.CustomerName" />
                 <span asp-validation-for="CustomerId" class="text-danger"></span>
             </div>
             <form asp-action="Edit">

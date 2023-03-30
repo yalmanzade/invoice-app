@@ -79,7 +79,7 @@ namespace invoice.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ulong id, [Bind("Id,Name,Amount,Amount")] Fee fee)
+        public async Task<IActionResult> Edit(ulong id, [Bind("Id,Name,Amount,IsFlatFee")] Fee fee)
         {
             if (id != fee.Id)
             {

@@ -14,10 +14,24 @@ namespace invoice.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            ReportService reportService = new(_context);
-            SalesReport salesReport = new();
-            salesReport = await reportService.PrepareSalesReportAsync();
-            return View(salesReport);
+            try
+            {
+                int count = _context.Invoices.Count();
+                if (count < 1) throw new ArgumentNullException();
+                ReportService reportService = new(_context);
+                SalesReport salesReport = new();
+                salesReport = await reportService.PrepareSalesReportAsync();
+                return View(salesReport);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return RedirectToAction(nameof(NoReport));
+            }
+
+        }
+        public IActionResult NoReport()
+        {
+            return View();
         }
     }
 }
