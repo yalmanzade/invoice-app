@@ -57,7 +57,7 @@ public class InvoiceService
                 table += @"<tr> 
                            <td>" + item.Name + @"</td>
                            <td>" + item.Quantity + @"</td>
-                           <td>" + item.Amount + @"</td>
+                           <td>" + $"${item.Amount}" + @"</td>
                            <td>" + item.FormatedPrice + @"</td>
                        </tr>";
             }

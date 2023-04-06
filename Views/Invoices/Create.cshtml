@@ -15,8 +15,9 @@
         <form id="form-data" asp-action="Create">
             <input type="hidden" name="fees" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <select name="CustomerId" id="CustomerId">
+            <div class="mb-3">
+                <label for="CustomerId" class="form-label">Select a Customer</label>
+                <select name="CustomerId" id="CustomerId" class="form-select">
                 @{
                     var companyList = ViewBag.CompanyList;
                     foreach (var company in companyList)
@@ -28,9 +29,10 @@
                 @*<input asp-for="CustomerId" class="form-control" />*@
                 <span asp-validation-for="CustomerId" class="text-danger"></span>
             </div>
-            <div id="product-target" class="form-group">
-                <div id="product-template">
-                    <select name="itemList[]" id="itemList" >
+            <div id="product-target" class="mb-3">
+                <div id="product-template" class="mb-4">
+                    <label for="product-template" class="form-label">Select a Product</label>
+                    <select name="itemList[]" id="itemList" class="form-select mb-2">
                         @{
                             foreach (var item in itemList)
                             {
@@ -40,40 +42,41 @@
                     </select>
                     <label for="quantity">Quantity</label>
                     <input value="0" type="number" id="quantity0" name="quantity[]"
-                           min="1" max="100000">
+                           min="1" max="100000" class="form-control">
                </div>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="DueDate" class="control-label"></label>
-                <input asp-for="DueDate" class="form-control" value="2023-02-20" />
+                <input asp-for="DueDate" class="form-control" value="2023-04-20" />
                 <span asp-validation-for="DueDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-2">
                 @{
                     foreach(var fee in feeList)
                     {
-                        <input type="checkbox" name="fees" value="@fee.Id" id="@fee.Id" checked />
+                        <input type="checkbox" name="fees" value="@fee.Id" id="@fee.Id" class="form-check-input"  />
                         <label for="fees">
                         @fee.Name
                         </label>
+                        <br>
                     }
                 }
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="mt-2">
+                <input type="submit" value="Create" class="btn btn-primary btn-lg" />
             </div>
         </form>
-        <div>
-            <button onclick="AddRow()">Add Row +</button>
+        <div class="mb-2">
+            <button onclick="AddRow()" class="btn btn-light btn-lg">Add Row +</button>
         </div>
-        <div>
+@*        <div>
             <button onclick="CreateInvoice()">Create</button>
-        </div>
+        </div>*@
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary btn-lg">Back to List</a>
 </div>
 
 @section Scripts {

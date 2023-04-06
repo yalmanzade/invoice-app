@@ -8,12 +8,12 @@ namespace invoice.Models;
 public class Invoice
 {
     [Key]
-    [DisplayName("Id")]
+    [DisplayName("Invoice ID")]
     public ulong InvoiceId { get; set; }
 
     [DisplayName("Customer")]
     [ForeignKey("CustomerId")]
-    public ulong CustomerId { get; set; }
+    public ulong? CustomerId { get; set; }
 
     [Required]
     [DisplayName("Customer")]
@@ -88,6 +88,7 @@ public class Invoice
                         TotalFees += item.Amount * Subtotal;
                     }
                 };
+                TotalFees = TotalFees - (Tax * Subtotal);
                 return string.Format("{0:C}", this.TotalFees);
             }
             else

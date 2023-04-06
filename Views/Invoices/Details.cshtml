@@ -67,11 +67,11 @@
                             decimal total = 0;
                             foreach (var item in Model.Items)
                             {
-                                total += item.Amount;
+                                total += item.Amount * item.Quantity;
                                 <tr>
                                     <td>@item.Name</td>
                                     <td>@item.Quantity</td>
-                                    <td>$@item.FormatedPrice</td>
+                                    <td>@item.FormatedPrice</td>
                                 </tr>
                             }
                             <tr>

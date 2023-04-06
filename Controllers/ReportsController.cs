@@ -17,7 +17,7 @@ namespace invoice.Controllers
             try
             {
                 int count = _context.Invoices.Count();
-                if (count < 1) throw new ArgumentNullException();
+                if (count < 10) throw new ArgumentNullException();
                 ReportService reportService = new(_context);
                 SalesReport salesReport = new();
                 salesReport = await reportService.PrepareSalesReportAsync();

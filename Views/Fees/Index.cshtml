@@ -18,6 +18,7 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Amount</th>
+                    <th>Fee Type</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -28,6 +29,16 @@
                         <td>@item.Id</td>
                         <td>@item.Name</td>
                         <td>@item.Amount</td>
+                        <td>
+                            @{
+                                if (item.IsFlatFee)
+                                {
+                                    <button type="button" class="btn btn-outline-warning" disabled>Flat Fee</button>
+                                }else{
+                                    <button type="button" class="btn btn-outline-secondary" disabled>Non Flat Fee</button>
+                                }
+                            }
+                        </td>
                         <td>
                             <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
 @*                            <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.Id">Details</a> |*@

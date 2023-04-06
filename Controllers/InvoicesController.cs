@@ -103,42 +103,42 @@ namespace invoice.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int[] quantity, ulong[] itemList,
-                                                ulong customerId, string[] fees,
+                                                ulong? customerId, string[] fees,
                                                 [Bind("CustomerId,DueDate")] Invoice invoice)
         {
-            if (ModelState.IsValid)
+            if (customerId != null)
             {
-                Company company = new()
-                {
-                    Id = 0,
-                    Name = "Amazing Cookies",
-                    Phone = "5555555555",
-                    Address = "123 Cookie Dr, Evansville IN"
-                };
-                invoice.Issuer = company;
-                invoice.CustomerId = customerId;
                 invoice.CustomerName = _context.Companies.FindAsync(customerId).Result.Name;
-                if (fees.Length > 1)
+            }
+            Company company = new()
+            {
+                Id = 0,
+                Name = "Amazing Cookies",
+                Phone = "5555555555",
+                Address = "123 Cookie Dr, Evansville IN"
+            };
+            invoice.Issuer = company;
+            invoice.CustomerId = customerId;
+            if (fees.Length > 1)
+            {
+                for (int i = 1; i < fees.Length; i++)
                 {
-                    for (int i = 1; i < fees.Length; i++)
-                    {
-                        ulong feeId = (ulong)Convert.ToDouble(fees[i]);
-                        var fee = await _context.Fees
-                                       .FirstOrDefaultAsync(m => m.Id == feeId);
-                        if (fee != null) invoice.Fees.Add(fee);
-                    }
-                    invoice.SaveFeeList();
+                    ulong feeId = (ulong)Convert.ToDouble(fees[i]);
+                    var fee = await _context.Fees
+                                   .FirstOrDefaultAsync(m => m.Id == feeId);
+                    if (fee != null) invoice.Fees.Add(fee);
                 }
-                await _context.AddAsync(invoice);
-                await _context.SaveChangesAsync();
-                var id = invoice.InvoiceId;
-                ulong ItemInvoiceId = (ulong)Convert.ToDouble(id);
-                if (itemList.Length > 0)
-                {
-                    invoice.Items = await GetItemsSold(itemList, quantity, ItemInvoiceId);
-                    await _context.ItemsSold.AddRangeAsync(invoice.Items);
-                    invoice.SaveItemList();
-                }
+                invoice.SaveFeeList();
+            }
+            await _context.AddAsync(invoice);
+            await _context.SaveChangesAsync();
+            var id = invoice.InvoiceId;
+            ulong ItemInvoiceId = (ulong)Convert.ToDouble(id);
+            if (itemList.Length > 0)
+            {
+                invoice.Items = await GetItemsSold(itemList, quantity, ItemInvoiceId);
+                await _context.ItemsSold.AddRangeAsync(invoice.Items);
+                invoice.SaveItemList();
             }
             _context.Update(invoice);
             await _context.SaveChangesAsync();
